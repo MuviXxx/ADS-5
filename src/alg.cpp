@@ -53,12 +53,10 @@ std::string infx2pstfx(std::string inf) {
         int priority = getPriority(operation);
         if (priority == -1) {
             pstfixStr += operation;
-        }
-        else {
+        } else {
             if (stack.get() < priority || priority == 0 || stack.isEmpty()) {
                 stack.push(operation);
-            }
-            else if (operation == ')') {
+            } else if (operation == ')') {
                 char letter = stack.get();
                 while (getPriority(letter) >= priority) {
                     pstfixStr += letter;
@@ -66,8 +64,7 @@ std::string infx2pstfx(std::string inf) {
                     letter = stack.get();
                 }
                 stack.pop();
-            }
-            else {
+            } else {
                 char character = stack.get();
                 while (getPriority(character) >= priority) {
                     pstfixStr += character;
@@ -105,18 +102,15 @@ int eval(std::string pref) {
         if (getPriority(pref[i]) == -1) {
             if (pref[i] == ' ') {
                 continue;
-            }
-            else if (isdigit(pref[i + 1])) {
+            } else if (isdigit(pref[i + 1])) {
                 num += pref[i];
                 continue;
-            }
-            else {
+            } else {
                 num += pref[i];
                 stack.push(atoi(num.c_str()));
                 num = "";
             }
-        }
-        else {
+        } else {
             int b = stack.get();
             stack.pop();
             int a = stack.get();
